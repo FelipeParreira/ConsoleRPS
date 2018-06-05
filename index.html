@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Rock, Paper and Scissors Project</title>
+</head>
+<body>
+  <script>
+
+  // capitalizes the first letter of a string and makes the others lowercase
+   function capitalize(string) {
+
+	     return string[0].toUpperCase() + string.substring(1).toLowerCase();
+
+     }
+
+  // randomly selects Rock, Paper or Scissors for the Computer to play with the user
+    function computerPlay() {
+
+     var answer = Math.floor((Math.random() * 3) + 1);
+     var option;
+
+      switch(answer) {
+
+	        case 1:
+	           option = 'Rock';
+	           break;
+          case 2:
+             option = 'Paper';
+             break;
+          case 3:
+             option = 'Scissors';
+             break;
+
+	          }
+
+          return option;
+
+    }
+
+    // plays one round of the game
+    function playRound(playerSelection, computerSelection) {
+
+      // makes the first letter of the user's input uppercase and the rest lowercase
+      playerSelection = capitalize(playerSelection);
+
+    // compares the input of the user with the computer's selection and determines the winner, printing a messafge to the console
+     switch(playerSelection) {
+           case "Rock":
+		         if(computerSelection == playerSelection){
+
+				           return 'It is a tie.' + ' ' + computerSelection + ' is equal to ' + computerSelection + '.';
+
+			       } else if(computerSelection == 'Paper') {
+
+				           return 'You Lose!' + ' ' + computerSelection + ' beats ' + playerSelection;
+
+			} else if(computerSelection == 'Scissors'){
+
+				return 'You Win!' + ' ' + playerSelection + ' beats ' + computerSelection;
+
+			}
+   		       break;
+
+          case "Paper":
+		        if(computerSelection == playerSelection){
+
+				          return 'It is a tie.' + ' ' + computerSelection + ' is equal to ' + computerSelection + '.';
+
+			      } else if(computerSelection == 'Scissors') {
+
+				          return 'You Lose!' + ' ' + computerSelection + ' beats ' + playerSelection;
+
+			      } else if(computerSelection == 'Rock'){
+
+				          return 'You Win!' + ' ' + playerSelection + ' beats ' + computerSelection;
+
+			}
+   		           break;
+
+           case "Scissors":
+		         if(computerSelection == playerSelection){
+
+				            return 'It is a tie.' + ' ' + computerSelection + ' is equal to ' + computerSelection + '.';
+
+			         } else if(computerSelection == 'Rock') {
+
+				             return 'You Lose!' + ' ' + computerSelection + ' beats ' + playerSelection;
+
+			         } else if(computerSelection == 'Paper'){
+
+				             return 'You Win!' + ' ' + playerSelection + ' beats ' + computerSelection;
+
+			         }
+   		        break;
+
+              }
+
+    }
+
+    // plays the game for 5 rounds and prints the score to the console
+         function game(){
+
+    // defines variables to compute the final score
+		var points_computer = 0;
+		var points_user = 0;
+
+    // plays 5 rounds of the game
+		for(var i = 0; i < 5; i++) {
+
+      // defines a variable to receive the user input, and asks for the user to enter a valid value until he does so.
+      var user_answer = '';
+      while(user_answer.toLowerCase() != 'paper' && user_answer.toLowerCase() != 'rock' && user_answer.toLowerCase() != 'scissors') {
+
+        user_answer = prompt('Enter Paper, Scissors or Rock: ', 'Paper');
+        if(user_answer.toLowerCase() != 'paper' && user_answer.toLowerCase() != 'rock' && user_answer.toLowerCase() != 'scissors'){
+          console.log('Please, enter a valid value.');
+        }
+
+      }
+    // plays the game
+		answer = playRound(user_answer, computerPlay(), points_user, points_computer);
+
+    // computes the score
+		if(answer.includes('Win', 0)) {
+			points_user += 1;
+		} else if (answer.includes('Lose', 0)) {
+			points_computer += 1;
+		}
+
+    // outputs the answer to the console
+		  console.log(answer);
+		}
+
+  // gives the final result of the game and prints the score to the console
+	if(points_user == points_computer) {
+
+			console.log('It was a tie!');
+			console.log('Score: You -> ' + points_user + ' Computer -> ' + points_computer + ' Ties -> ' + (5 - points_user - points_computer));
+
+		} else if (points_user > points_computer) {
+
+			console.log('You won!');
+			console.log('Score: You -> ' + points_user + ' Computer -> ' + points_computer + ' Ties -> ' + (5 - points_user - points_computer));
+
+		} else {
+
+			console.log('The computer won.');
+			console.log('Score: You -> ' + points_user + ' Computer -> ' + points_computer + ' Ties -> ' + (5 - points_user - points_computer));
+		}
+
+
+
+}
+
+  //plays the game - just invoking the preceding function
+	game();
+
+  </script>
+</body>
+</html>
